@@ -8,7 +8,7 @@ export const authRouter = express.Router();
 const validateSignUp = [
   body('nickname').trim()
     .notEmpty().withMessage('nickname is missing!')
-    .isLength({ min: 3, max: 8 }).withMessage('text should be at least 3 characters')
+    .isLength({ min: 3, max: 12 }).withMessage('text should be at least 3 characters')
   , body('password').trim()
     .notEmpty().withMessage('password is missing!')
     .isLength({ min: 8, max: 15 }).withMessage('password is missing!')
@@ -25,7 +25,7 @@ const validateSignUp = [
 const validateSignIn = [
   body('nickname').trim()
     .notEmpty().withMessage('nickname is missing!')
-    .isLength({ min: 3, max: 8 }).withMessage('text should be at least 3 characters')
+    .isLength({ min: 3, max: 12 }).withMessage('text should be at least 3 characters')
   , body('password').trim()
     .notEmpty().withMessage('password is missing!')
     .isLength({ min: 8, max: 15 }).withMessage('password is missing!')
