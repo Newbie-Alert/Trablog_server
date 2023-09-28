@@ -3,6 +3,8 @@ import cors from 'cors'
 import morgan from 'morgan';
 import { config } from './config.js';
 import { authRouter } from './Router/authRouter.js';
+import { postRouter } from './Router/postsRouter.js';
+import { isAuth } from './Middleware/auth.js';
 
 const app = express();
 
@@ -15,7 +17,8 @@ app.use(morgan('tiny'));
 
 // router
 app.use('/auth', authRouter);
-
+app.use('/posts', postRouter);
+app.get('/me', isAuth);
 
 
 // Not Found

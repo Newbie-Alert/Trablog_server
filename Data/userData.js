@@ -1,25 +1,25 @@
-let users = [
-  {
-    nickname: 'waffleBear',
-    password: '$2b$10$kUj0XsY9TfzXVqhyLsLMveEXo/Rb/pc5UMHrsCM5Ni//l3pR83wne', //asdf1234
-    name: 'maricha',
-    email: 'test1@test.com',
-  }
-]
-
+import { ObjectId } from 'mongodb';
+import * as db from '../Database/mongoDb.js'
 
 export async function getAllUser() {
-  return users
+  return db.getUsers().find().toArray();
 }
 
 export async function getUserByNick(nickname) {
-  const data = users.find(user => user.nickname === nickname);
+  const data = db.getUsers().findOne({ nickname: nickname })
   return data;
 }
 
 export async function createUser(info) {
-  const newUser = { ...info, id: Date.now().toString() }
-  users.push(newUser)
-  console.log(users);
-  return newUser.id
+  const newUser = { ...info }
+  return await db.getUsers().insertOne(newUser)
+    .then((data) => {
+      return data.insertedId
+    })
+}
+
+export async function getById(userID) {
+  const O_id = new ObjectId(userID);
+  const data = await db.getUsers().findOne({ _id: O_id });
+  return data;
 }

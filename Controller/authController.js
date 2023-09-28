@@ -39,7 +39,7 @@ export async function signIn(req, res) {
     return res.status(404).json({ msg: 'not exists nickname or password' })
   }
 
-  const token = createJWT(found.id);
+  const token = createJWT(found._id);
 
   res.status(200).json({ token, name: found.name })
 }
