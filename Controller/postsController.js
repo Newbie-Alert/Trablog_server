@@ -26,3 +26,12 @@ export async function getPopular(req, res) {
   }
   res.status(200).json(data);
 }
+
+export async function getById(req, res) {
+  const post_id = req.params.post_id
+  const data = await postRepository.getById(post_id)
+  if (!data) {
+    return res.send(404).json({ msg: "sorry no data" }.msg);
+  }
+  res.status(200).json(data);
+}

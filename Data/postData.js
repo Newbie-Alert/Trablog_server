@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import * as db from '../Database/mongoDb.js';
 
 
@@ -12,6 +13,13 @@ export async function getByNickname(nickname) {
 
 export async function getByName(name) {
   const data = db.getPosts().find({ name: name }).toArray();
+  return data;
+}
+
+export async function getById(post_id) {
+  const O_id = new ObjectId(post_id);
+  const data = db.getPosts().find({ _id: O_id }).toArray();
+  console.log(data);
   return data;
 }
 

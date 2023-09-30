@@ -10,3 +10,5 @@ postRouter.get('/', postController.getAll)
 postRouter.get('/popular', postController.getPopular)
 
 postRouter.get('/:name', isAuth, postController.getByName)
+
+postRouter.get('/myPosts/:id/:post_id', postController.getById)
